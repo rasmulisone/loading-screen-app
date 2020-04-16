@@ -10,6 +10,7 @@ public class loadingScript : MonoBehaviour {
     public Slider progressSlider;
     public Text percentText;
     public Text doingStuffText;
+    public Button esc;
     float delay;
     public Button okay;
     public Button wholeScreenButton;
@@ -35,8 +36,10 @@ public class loadingScript : MonoBehaviour {
         suspicious.Add("Downloading useless content...");
         suspicious.Add("Deleting useful content...");
         suspicious.Add("Deleting antivirus software...");
+        suspicious.Add("Cloning viruses...");
         cam = Camera.main;
         okay.transform.localScale = Vector2.zero;
+        esc.transform.localScale = Vector2.zero;
         loadingText.transform.localScale = Vector2.zero;
         progressSlider.transform.localScale = Vector2.zero;
         percentText.transform.localScale = Vector2.zero;
@@ -53,6 +56,11 @@ public class loadingScript : MonoBehaviour {
             loadingText.text = "Finished";
             doingStuffText.text = "Loading completed";
             okay.transform.localScale = Vector2.one;
+            esc.transform.localScale = Vector2.one;
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                Quit();
+            }
         }
     }
 
@@ -133,5 +141,11 @@ public class loadingScript : MonoBehaviour {
     public void ToggleSuspiciousInstall()
     {
         suspiciousInstall = true;
+    }
+
+    public void Quit()
+    {
+        Debug.Log("Application quitting.");
+        Application.Quit();
     }
 }
